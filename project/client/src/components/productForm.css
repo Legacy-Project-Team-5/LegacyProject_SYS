@@ -1,0 +1,39 @@
+.formContainer {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 30px 10px 30px;
+}
+.form1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 30px 10px 30px;
+  background-color: #79031d;
+  color: aliceblue;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.inputDiv {
+  background-color: rgb(206, 206, 206);
+  border-radius: 14px;
+  margin-left: 750px;
+  margin-right: 750px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+label,
+input {
+  display: grid;
+  grid-template-columns: max-content;
+
+  padding: 10px;
+}
+
+.addProductBtn{
+  margin: 10px;
+ padding: 3px 10px 3px 10px;
+ background-color: aliceblue;
+ color: rgb(0, 0, 0);
+}
