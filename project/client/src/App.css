@@ -1,0 +1,15 @@
+body{
+    background-color: #F5f7f7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+
+  .productForm{
+    background-color: rgb(255, 0, 0);
+    border: 5px solid black;
+  }
