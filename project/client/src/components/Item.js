@@ -52,7 +52,7 @@ console.log ("hi")
   return (
     <div className="container">
       {product.map((g, index) => (
-        id === g._id ? <Edit g={g} setId={setId} handleEdit={handleEdit}/> : 
+        id === g._id ? <Edit g={g} setId={setId} handleEdit={handleEdit} getAllProducts ={getAllProducts} id={id}/> : 
         <div className="block" key={index}>
           <div className="return">
             <h1>{g.title}</h1>
