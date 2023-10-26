@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
+import Swal from 'sweetalert2';
 import Edit from "./Edit";
 import "./item.css";
 
@@ -36,19 +37,48 @@ console.log ("hi")
   }
 
   async function deleteProduct(id) {
+    const alertDeleteProduct = await Swal.fire({
+      title: 'Are you sure?',
+      text: "It will permanently deleted !",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+      if (alertDeleteProduct) {
+        try {
+         await axios.delete(`http://localhost:8000/${id}`);
+          getAllProducts();
+          Swal.fire(
+            'Good job!',
+            'You deleted the product!',
+            'success'
+          )
+        } catch (error) {
+          console.log("delete product", error);
+        }
+      }
+  }
+    
+/*   async function deleteProduct(id) {
     const alertDeleteProduct = window.confirm("are you sure mate?");
     if (alertDeleteProduct) {
       try {
         await axios.delete(`http://localhost:8000/${id}`);
         getAllProducts();
+        Swal.fire(
+          'Good job!',
+          'You deleted the product!',
+          'success'
+        )
       } catch (error) {
         console.log("delete product", error);
       }
-
-      // getAllProducts();
     }
-  }
+  }; */
 
+  
   return (
     <div className="container">
       {product.map((g, index) => (

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
+import Swal from 'sweetalert2';
 import "./login.css"
 
 function Login() {
@@ -16,12 +17,19 @@ function Login() {
       e.preventDefault();
       let res = await axios.post("http://localhost:8000/login", { email, password });
       if (res.status === 200) {
-        alert(res.data.msg);
+        Swal.fire(
+          'Yes!',
+          `${res.data.msg}`,
+          'success'
+        )
         localStorage.setItem("token", res.data.token);
         navigate("/")
       }
     } catch (error) {
-      alert("Can not log in, please check your email or password");
+      Swal.fire(
+        "Cannot log in", 
+        "please check your email or password",
+        "warning");
     }
   }
 
