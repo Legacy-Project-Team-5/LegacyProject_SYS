@@ -1,6 +1,6 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,7 +11,7 @@ import { BiMessageRoundedAdd } from 'react-icons/bi';
 import { RiInformationLine, RiLogoutCircleLine } from 'react-icons/ri';
 
 function NnavBar() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   let token;
   let decoded;
   try {
@@ -29,7 +29,7 @@ function NnavBar() {
   function handleLogout() {
     if (token) {
       localStorage.removeItem('token');
-      // navigate(-1);
+      navigate('/');
       window.location.reload();
     } else {
       return;
