@@ -4,6 +4,8 @@ import './productForm.css';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Swal from 'sweetalert2';
+
 
 function AddProduct({ getAllProducts }) {
   let token = localStorage.getItem('token');
@@ -36,7 +38,13 @@ function AddProduct({ getAllProducts }) {
   function addNewProduct(e) {
     e.preventDefault();
     if (!validForm()) {
-      alert('Please fill in all fields.');
+
+      Swal.fire({
+        icon:"error",
+        title:"ooppsss",
+        text:"Please fill in all fields."
+        });
+
       return;
     }
 

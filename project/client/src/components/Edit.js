@@ -52,6 +52,7 @@ function Edit({ g, setId }) {
           <TiCancelOutline /> Cancel
         </Button>
       </div>
+
     </div>
   );
 }
