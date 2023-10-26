@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 import "./productForm.css";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +35,11 @@ function AddProduct({ getAllProducts }) {
   function addNewProduct(e) {
     e.preventDefault();
     if (!validForm()) {
-      alert("Please fill in all fields.");
+      Swal.fire({
+        icon:"error",
+        title:"ooppsss",
+        text:"Please fill in all fields."
+        });
       return;
     }
 
