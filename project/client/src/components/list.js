@@ -1,12 +1,11 @@
-import Item from "./Item";
+import Item from './Item';
 // import { useEffect } from "react";
-import React from "react";
-
+import React from 'react';
 
 function List({ product, getAllProducts }) {
   return (
     <>
-      <div>
+      <div className="justify ">
         <Item product={product} getAllProducts={getAllProducts} />
       </div>
     </>

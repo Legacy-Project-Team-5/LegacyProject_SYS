@@ -1,20 +1,29 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import jwt_decode from "jwt-decode";
-import Swal from 'sweetalert2';
-import Edit from "./Edit";
-import "./item.css";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
+import Edit from './Edit';
+import { RiDeleteBin5Line, RiEditLine } from 'react-icons/ri';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+
 
 function Item({ getAllProducts, product }) {
   //states
   const [creatorIds, setCreatorIds] = useState([]);
   const [id, setId] = useState(1);
 
-  let token = localStorage.getItem("token");
+
+  let token = localStorage.getItem('token');
   const decoded = token ? jwt_decode(token) : null;
-  
+
+
   useEffect(() => {
-    if(decoded){
+    if (decoded) {
       function filtered() {
         let updatedCreatorIds = product
           .filter((p) => p.creator._id === decoded.id)
@@ -22,6 +31,9 @@ function Item({ getAllProducts, product }) {
         setCreatorIds(updatedCreatorIds);
       }
       filtered();
+
+ 
+
     } 
   }, [product]);
 
@@ -63,6 +75,7 @@ console.log ("hi")
     
 /*   async function deleteProduct(id) {
     const alertDeleteProduct = window.confirm("are you sure mate?");
+
     if (alertDeleteProduct) {
       try {
         await axios.delete(`http://localhost:8000/${id}`);
@@ -73,37 +86,61 @@ console.log ("hi")
           'success'
         )
       } catch (error) {
-        console.log("delete product", error);
+        console.log('delete product', error);
       }
     }
   }; */
 
   
   return (
-    <div className="container">
-      {product.map((g, index) => (
-        id === g._id ? <Edit g={g} setId={setId} handleEdit={handleEdit} getAllProducts ={getAllProducts} id={id}/> : 
-        <div className="block" key={index}>
-          <div className="return">
-            <h1>{g.title}</h1>
-            <h3>{g.title/* creator.email */}</h3>
-            <img className="image" src={g.imgUrl} alt="img" />
-            <p>{g.description}</p>
-            <p>{g.price}€</p>
-           {token && creatorIds.includes(g._id) && (
-              <button onClick={() => deleteProduct(g._id)}>
-                <i className="deleteIcon">delete</i>
-              </button>
-            )}
-            {token && creatorIds.includes(g._id) && (
-              <button onClick={() => editProduct(g._id)}>
-                <i className="editIcon">edit</i>
-              </button>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
+
+    <Container fluid className="m-4 " style={{ width: '100%' }}>
+      <Row md={2} lg={3} xl={4} style={{ width: '100%' }} className="g-2">
+        {product.map((g, index) =>
+          id === g._id ? (
+            <Edit g={g} setId={setId} handleEdit={handleEdit} />
+          ) : (
+            <Col>
+              <Card style={{ width: '18rem' }} key={index} border="secondary">
+                <Card.Img
+                  variant="top"
+                  src={g.imgUrl}
+                  alt="img"
+                  style={{ width: '100%', height: '200px' }}
+                />
+                <Card.Body>
+                  <Card.Title>{g.title}</Card.Title>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                  <ListGroup.Item>Price: {g.price}€</ListGroup.Item>
+                  <ListGroup.Item>Description: {g.description}</ListGroup.Item>
+                  <ListGroup.Item>User: {g.creator.email}</ListGroup.Item>
+                </ListGroup>
+                <Card.Body>
+                  {token && creatorIds.includes(g._id) && (
+                    <Button onClick={() => deleteProduct(g._id)}>
+                      <RiDeleteBin5Line />
+                      Delete
+                    </Button>
+                  )}
+                  {token && creatorIds.includes(g._id) && (
+                    <Button
+                      onClick={() => editProduct(g._id)}
+                      variant="danger"
+                      className="ms-2"
+                    >
+                      <RiEditLine />
+                      Edit
+                    </Button>
+                  )}
+                </Card.Body>
+              </Card>
+            </Col>
+          ),
+        )}
+      </Row>
+    </Container>
+
   );
 }
 
