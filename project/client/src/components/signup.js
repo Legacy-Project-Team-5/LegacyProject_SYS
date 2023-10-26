@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 import"./signup.css"
 
 function SignUp() {
@@ -10,7 +11,11 @@ function SignUp() {
   async function handleRegister(e) {
     e.preventDefault();
     let res = await axios.post("http://localhost:8000/register",{email,password})
-    alert(res.data.msg)
+    Swal.fire(
+      'Good job!',
+      `${res.data.msg}`,
+      'success'
+    )
     navigate("/login")
   }
   return (
