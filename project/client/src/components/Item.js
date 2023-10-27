@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+import Swal from 'sweetalert2';
 import Edit from './Edit';
 import { RiDeleteBin5Line, RiEditLine } from 'react-icons/ri';
 import Card from 'react-bootstrap/Card';
@@ -28,7 +29,7 @@ function Item({ getAllProducts, product }) {
         setCreatorIds(updatedCreatorIds);
       }
       filtered();
-    }
+
   }, [product]);
 
   function editProduct(id) {
@@ -62,30 +63,12 @@ function Item({ getAllProducts, product }) {
     }
   }
 
-  /*   async function deleteProduct(id) {
-    const alertDeleteProduct = window.confirm("are you sure mate?");
-
-    if (alertDeleteProduct) {
-      try {
-        await axios.delete(`http://localhost:8000/${id}`);
-        getAllProducts();
-        Swal.fire(
-          'Good job!',
-          'You deleted the product!',
-          'success'
-        )
-      } catch (error) {
-        console.log('delete product', error);
-      }
-    }
-  }; */
-
   return (
     <Container fluid className="m-4 " style={{ width: '100%' }}>
       <Row md={2} lg={3} xl={4} style={{ width: '100%' }} className="g-2">
         {product.map((g, index) =>
           id === g._id ? (
-            <Edit g={g} setId={setId} handleEdit={handleEdit} />
+            <Edit g={g} setId={setId} handleEdit={handleEdit} getAllProducts ={getAllProducts} id={id} />
           ) : (
             <Col>
               <Card style={{ width: '18rem' }} key={index} border="secondary">
