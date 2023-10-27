@@ -1,5 +1,5 @@
 body{
-    background-color: #F5f7f7;
+    background-color: rgba(168, 112, 124, 0.1);
 }
 
 * {
@@ -12,4 +12,17 @@ body{
   .productForm{
     background-color: rgb(255, 0, 0);
     border: 5px solid black;
+  }
+
+  .home{
+    text-align: center;
+  }
+
+  .home h1 {
+    font-size: 70px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #e1455d, #6e082d);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
   }
