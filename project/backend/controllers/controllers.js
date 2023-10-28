@@ -58,16 +58,16 @@ const deleteProduct = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    let { email, password } = req.body;
-    if (!email || !password) {
-      return res.send({ msg: "Both email and password are required" });
+    let { email, password, role } = req.body;
+    if (!email || !password || !role) {
+      return res.send({ msg: "All fields are required" });
     }
     let found = await User.findOne({ email });
     if (found) {
       return res.send({ msg: "Email already exists" });
     }
     let hashPassword = await bcrypt.hash(password, 10);
-    await User.create({ email, password: hashPassword });
+    await User.create({ email, password: hashPassword, role });
     return res.send({ msg: "Registered successfully" });
   } catch (error) {
     res.status(500).send({ msg: "Internal server error" });
@@ -76,7 +76,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    let { email, password } = req.body;
+    let { email, password, role } = req.body;
     if (!email || !password) {
       return res
         .status(402)
@@ -93,6 +93,7 @@ const login = async (req, res) => {
           {
             email: oldUser.email,
             id: oldUser._id,
+            role: oldUser.role
           },
           process.env.TOKEN_KEY,
           // { expiresIn: "2h" }
