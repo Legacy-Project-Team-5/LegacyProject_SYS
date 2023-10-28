@@ -49,15 +49,20 @@ function Item({ getAllProducts, product }) {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    });
-    if (alertDeleteProduct) {
-      try {
-        await axios.delete(`http://localhost:8000/${id}`);
-        getAllProducts();
-        Swal.fire('Good job!', 'You deleted the product!', 'success');
-      } catch (error) {
-        console.log('delete product', error);
+      confirmButtonText: 'Yes, delete it!'
+    })
+      if (alertDeleteProduct) {
+        try {
+         await axios.delete(`http://localhost:8000/${id}`);
+          getAllProducts();
+          Swal.fire(
+            'Fine.',
+            'You deleted the product!',
+            'success'
+          )
+        } catch (error) {
+          console.log("delete product", error);
+        }
       }
     }
   }
@@ -69,8 +74,8 @@ function Item({ getAllProducts, product }) {
           id === g._id ? (
             <Edit g={g} setId={setId} handleEdit={handleEdit} getAllProducts ={getAllProducts} id={id} />
           ) : (
-            <Col>
-              <Card style={{ width: '18rem' }} key={index} border="secondary">
+            <Col key={index}>
+              <Card style={{ width: '18rem' }} border="secondary">
                 <Card.Img
                   variant="top"
                   src={g.imgUrl}
@@ -84,6 +89,7 @@ function Item({ getAllProducts, product }) {
                   <ListGroup.Item>Price: {g.price}€</ListGroup.Item>
                   <ListGroup.Item>Description: {g.description}</ListGroup.Item>
                   <ListGroup.Item>User: {g.creator.email}</ListGroup.Item>
+                  <ListGroup.Item>Category: {g.category}</ListGroup.Item>
                 </ListGroup>
                 <Card.Body>
                   {token && creatorIds.includes(g._id) && (
