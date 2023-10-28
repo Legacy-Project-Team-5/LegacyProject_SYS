@@ -20,8 +20,8 @@ function NnavBar() {
     if (token) {
       decoded = jwt_decode(token);
     }
-    console.log('Token:', token);
-    console.log('Decoded:', decoded);
+    // console.log('Token:', token);
+    console.log('Decoded:', decoded.role);
   } catch (error) {
     console.log('Invalid token', error);
   }

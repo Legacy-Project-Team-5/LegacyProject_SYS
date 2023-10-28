@@ -10,7 +10,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Swal from 'sweetalert2';
 
 function Item({ getAllProducts, product }) {
   //states
@@ -29,7 +28,7 @@ function Item({ getAllProducts, product }) {
         setCreatorIds(updatedCreatorIds);
       }
       filtered();
-
+    }
   }, [product]);
 
   function editProduct(id) {
