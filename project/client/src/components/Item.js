@@ -61,7 +61,7 @@ console.log ("hi")
          await axios.delete(`http://localhost:8000/${id}`);
           getAllProducts();
           Swal.fire(
-            'Good job!',
+            'Fine.',
             'You deleted the product!',
             'success'
           )
@@ -80,8 +80,8 @@ console.log ("hi")
           id === g._id ? (
             <Edit g={g} setId={setId} handleEdit={handleEdit} getAllProducts ={getAllProducts} id={id} />
           ) : (
-            <Col>
-              <Card style={{ width: '18rem' }} key={index} border="secondary">
+            <Col key={index}>
+              <Card style={{ width: '18rem' }} border="secondary">
                 <Card.Img
                   variant="top"
                   src={g.imgUrl}
@@ -95,6 +95,7 @@ console.log ("hi")
                   <ListGroup.Item>Price: {g.price}€</ListGroup.Item>
                   <ListGroup.Item>Description: {g.description}</ListGroup.Item>
                   <ListGroup.Item>User: {g.creator.email}</ListGroup.Item>
+                  <ListGroup.Item>Category: {g.category}</ListGroup.Item>
                 </ListGroup>
                 <Card.Body>
                   {token && creatorIds.includes(g._id) && (
