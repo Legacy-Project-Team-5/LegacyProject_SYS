@@ -36,74 +36,108 @@ function NnavBar() {
     }
   }
 
-  return (
-    <>
-      {!token ? (
-        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-          <Container fluid>
-            <Navbar.Brand>
-              <Image src={logo} width={'50px'} />
-            </Navbar.Brand>
-            <Navbar.Brand href="/home">
-              <h2>SYS</h2>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="/home">
-                  <FaHome className="me-1" />
-                  Home
-                </Nav.Link>
-                <Nav.Link href="/">
-                  <FaBuysellads className="me-1" />
-                  Ads
-                </Nav.Link>
-                <Nav.Link href="/signup">
-                  <FaRegAddressCard className="me-1" />
-                  Sign Up
-                </Nav.Link>
-                <Nav.Link href="/login">
-                  <RiInformationLine className="me-1" />
-                  Log In
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      ) : (
-        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-          <Container fluid>
-            <Navbar.Brand>
-              <Image src={logo} width={'50px'} />
-            </Navbar.Brand>
-            <Navbar.Brand href="/home">SYS</Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                {/* <NavBar.Brand>{decoded.email}</NavBar.Brand> */}
-                <Nav.Link href="/home">
-                  <FaHome className="me-1" />
-                  Home
-                </Nav.Link>
-                <Nav.Link href="/">
-                  <FaBuysellads className="me-1" />
-                  Ads
-                </Nav.Link>
-                <Nav.Link href="/form">
-                  <BiMessageRoundedAdd className="me-1" />
-                  Post an ad
-                </Nav.Link>
-                <Nav.Link onClick={handleLogout}>
-                  <RiLogoutCircleLine className="me-1" />
-                  Log out
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      )}
-    </>
-  );
-}
+ return (
+     <div>
+         {!token && (
+             <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+                 <Container fluid>
+                     <Navbar.Brand>
+                         <Image src={logo} width={"50px"} />
+                     </Navbar.Brand>
+                     <Navbar.Brand href="/home">
+                         <h2>SYS</h2>
+                     </Navbar.Brand>
+                     <Navbar.Toggle aria-controls="navbarScroll" />
+                     <Navbar.Collapse id="navbarScroll">
+                         <Nav className="justify-content-end flex-grow-1 pe-3">
+                             <Nav.Link href="/home">
+                                 <FaHome className="me-1" />
+                                 Home
+                             </Nav.Link>
+                             {/* <Nav.Link href="/">
+                                <FaBuysellads className="me-1" />
+                                Ads
+                              </Nav.Link> */}
+                             <Nav.Link href="/signup">
+                                 <FaRegAddressCard className="me-1" />
+                                 Sign Up
+                             </Nav.Link>
+                             <Nav.Link href="/login">
+                                 <RiInformationLine className="me-1" />
+                                 Log In
+                             </Nav.Link>
+                         </Nav>
+                     </Navbar.Collapse>
+                 </Container>
+             </Navbar>
+         )}
+         {token && decoded.role === "buyer" && (
+             <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+                 <Container fluid>
+                     <Navbar.Brand>
+                         <Image src={logo} width={"50px"} />
+                     </Navbar.Brand>
+                     <Navbar.Brand href="/home">SYS</Navbar.Brand>
+                     <Navbar.Toggle aria-controls="navbarScroll" />
+                     <Navbar.Collapse id="navbarScroll">
+                         <Nav className="justify-content-end flex-grow-1 pe-3">
+                             {/* <NavBar.Brand>{decoded.email}</NavBar.Brand> */}
+                             <Nav.Link href="/home">
+                                 <FaHome className="me-1" />
+                                 Home
+                             </Nav.Link>
+                             <Nav.Link href="/">
+                                 <FaBuysellads className="me-1" />
+                                 Ads
+                             </Nav.Link>
+                             {/* <Nav.Link href="/form">
+                                 <BiMessageRoundedAdd className="me-1" />
+                                 Post an ad
+                             </Nav.Link> */}
+                             <Nav.Link onClick={handleLogout}>
+                                 <RiLogoutCircleLine className="me-1" />
+                                 Log out
+                             </Nav.Link>
+                         </Nav>
+                     </Navbar.Collapse>
+                 </Container>
+             </Navbar>
+         )}
+         {token && decoded.role === "seller" && (
+             <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+                 <Container fluid>
+                     <Navbar.Brand>
+                         <Image src={logo} width={"50px"} />
+                     </Navbar.Brand>
+                     <Navbar.Brand href="/home">SYS</Navbar.Brand>
+                     <Navbar.Toggle aria-controls="navbarScroll" />
+                     <Navbar.Collapse id="navbarScroll">
+                         <Nav className="justify-content-end flex-grow-1 pe-3">
+                             {/* <NavBar.Brand>{decoded.email}</NavBar.Brand> */}
+                             <Nav.Link href="/home">
+                                 <FaHome className="me-1" />
+                                 Home
+                             </Nav.Link>
+                             <Nav.Link href="/">
+                                 <FaBuysellads className="me-1" />
+                                 Ads
+                             </Nav.Link>
+                             <Nav.Link href="/form">
+                                 <BiMessageRoundedAdd className="me-1" />
+                                 Post an ad
+                             </Nav.Link>
+                             <Nav.Link onClick={handleLogout}>
+                                 <RiLogoutCircleLine className="me-1" />
+                                 Log out
+                             </Nav.Link>
+                         </Nav>
+                     </Navbar.Collapse>
+                 </Container>
+             </Navbar>
+         )}
+     </div>
+ );
+ }
+  export default NnavBar;
 
-export default NnavBar;
+
