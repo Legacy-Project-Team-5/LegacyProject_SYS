@@ -1,0 +1,44 @@
+body{
+    background-color: rgba(168, 112, 124, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+
+  .productForm{
+    background-color: rgb(255, 0, 0);
+    border: 5px solid black;
+  }
+
+  .home{
+    text-align: center;
+  }
+
+  .home h1 {
+    font-size: 70px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #e1455d, #6e082d);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .sign-up{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+  }
+
+  .login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 100px;
+  }
