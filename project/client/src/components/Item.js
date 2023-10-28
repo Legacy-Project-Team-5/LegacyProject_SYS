@@ -42,25 +42,21 @@ function Item({ getAllProducts, product }) {
   }
 
   async function deleteProduct(id) {
-    const alertDeleteProduct = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'It will permanently deleted !',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    });
+    const alertDeleteProduct = window.confirm("are you sure mate?");
     if (alertDeleteProduct) {
       try {
         await axios.delete(`http://localhost:8000/${id}`);
         getAllProducts();
-        Swal.fire('Good job!', 'You deleted the product!', 'success');
+        Swal.fire(
+          'Good job!',
+          'You deleted the product!',
+          'success'
+        )
       } catch (error) {
-        console.log('delete product', error);
+        console.log("delete product", error);
       }
     }
-  }
+  };
 
   return (
     <Container fluid className="m-4 " style={{ width: '100%' }}>
@@ -69,8 +65,8 @@ function Item({ getAllProducts, product }) {
           id === g._id ? (
             <Edit g={g} setId={setId} handleEdit={handleEdit} getAllProducts ={getAllProducts} id={id} />
           ) : (
-            <Col>
-              <Card style={{ width: '18rem' }} key={index} border="secondary">
+            <Col key={index}>
+              <Card style={{ width: '18rem' }} border="secondary">
                 <Card.Img
                   variant="top"
                   src={g.imgUrl}
@@ -84,6 +80,7 @@ function Item({ getAllProducts, product }) {
                   <ListGroup.Item>Price: {g.price}€</ListGroup.Item>
                   <ListGroup.Item>Description: {g.description}</ListGroup.Item>
                   <ListGroup.Item>User: {g.creator.email}</ListGroup.Item>
+                  <ListGroup.Item>Category: {g.category}</ListGroup.Item>
                 </ListGroup>
                 <Card.Body>
                   {token && creatorIds.includes(g._id) && (

@@ -51,14 +51,20 @@ function SignUp() {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                       />
-                      <select
-                          value={role}
-                          onChange={(e) => setRole(e.target.value)}
-                      >
-                          <option value="">Chose a role</option>
-                          <option value="buyer">Buyer</option>
-                          <option value="seller">Seller</option>
-                      </select>
+                   <Form.Label htmlFor="inputRole" className="mt-2">
+              Chose a role:
+            </Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="mt-2"
+            >
+              <option>Chose a role</option>
+
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
+            </Form.Select>
 
                       <div className="mt-2">
                           <Button type="submit">Sign up</Button>

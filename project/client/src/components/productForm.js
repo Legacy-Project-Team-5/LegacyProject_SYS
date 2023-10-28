@@ -5,25 +5,42 @@ import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2';
+import Select from 'react-select';
 
 
 function AddProduct({ getAllProducts }) {
+
   let token = localStorage.getItem('token');
   const navigate = useNavigate();
+
+  //states
   const [product, setProduct] = useState({
     title: '',
     imgUrl: '',
     description: '',
     price: '',
+    category: '',
   });
+  const [selected, setSelected] = useState("");
+
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setProduct({
       ...product,
-      [e.target.name]: value,
+      [e.target.name]: value
     });
+    console.log (product);
   };
+
+/*   const handleSelect = (e) => {
+  console.log (e.value)
+  setProduct({
+    ...product,
+  category: e.value,
+  });
+  console.log (product);
+  } */
 
   //Function to validate the form
   const validForm = () => {
@@ -31,7 +48,8 @@ function AddProduct({ getAllProducts }) {
       product.title.trim() !== '' &&
       product.imgUrl.trim() !== '' &&
       product.description.trim() !== '' &&
-      product.price.trim() !== ''
+      product.price.trim() !== '' &&
+      product.category.trim() !== ''
     );
   };
 
@@ -109,6 +127,22 @@ function AddProduct({ getAllProducts }) {
           onChange={handleInputChange}
           value={product.price}
         />
+
+        <Form.Label htmlFor="inputTitle" className="mt-2">
+        Category:
+        </Form.Label>
+        <select
+        name ="category" 
+        value = {product.category}
+        onChange={handleInputChange}
+        >
+       <option value="">Selected</option>
+       <option value="Games">Games</option>
+       <option value="Tech">Tech</option>
+       <option value="Other">Other</option>
+        </select>
+  
+
         <div className="mt-4">
           <Button type="submit" className="addProductBtn">
             ADD

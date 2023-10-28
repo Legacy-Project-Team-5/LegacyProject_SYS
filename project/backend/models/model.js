@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
 
-
-
-
 const productSchema = new mongoose.Schema(
   {
     title: String,
     imgUrl: String,
     description: String,
     price: String,
+    category: String,
     creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   {
