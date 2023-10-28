@@ -48,7 +48,8 @@ function AddProduct({ getAllProducts }) {
       product.title.trim() !== '' &&
       product.imgUrl.trim() !== '' &&
       product.description.trim() !== '' &&
-      product.price.trim() !== ''
+      product.price.trim() !== '' &&
+      product.category.trim() !== ''
     );
   };
 
@@ -130,9 +131,10 @@ function AddProduct({ getAllProducts }) {
         <Form.Label htmlFor="inputTitle" className="mt-2">
         Category:
         </Form.Label>
-        <select 
-        value = {selected}
-        onChange={(e) => setSelected(e.target.value)}
+        <select
+        name ="category" 
+        value = {product.category}
+        onChange={handleInputChange}
         >
        <option value="">Selected</option>
        <option value="Games">Games</option>
