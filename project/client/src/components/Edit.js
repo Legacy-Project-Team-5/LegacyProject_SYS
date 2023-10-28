@@ -31,7 +31,7 @@ function Edit({g ,setId, getAllProducts, id }) {
           title: updatedValue.title,
           imgUrl: updatedValue.imgUrl,
           description: updatedValue.description,
-          price: updatedValue.price,
+          price: updatedValue.price
         })
         .then((res) => console.log(res.data))
         .then(() => getAllProducts())
