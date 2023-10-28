@@ -19,12 +19,13 @@ const createProduct = async (req, res) => {
   try {
     console.log(req.user)
     let creator = req.user.id;
-    let { title, imgUrl, description, price } = req.body;
+    let { title, imgUrl, description, price, category } = req.body;
     let newProduct = {
       title,
       imgUrl,
       description,
       price,
+      category,
       creator,
     };
     let product = await Product.create(newProduct);

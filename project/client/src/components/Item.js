@@ -42,29 +42,21 @@ function Item({ getAllProducts, product }) {
   }
 
   async function deleteProduct(id) {
-    const alertDeleteProduct = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'It will permanently deleted !',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    })
-      if (alertDeleteProduct) {
-        try {
-         await axios.delete(`http://localhost:8000/${id}`);
-          getAllProducts();
-          Swal.fire(
-            'Good job!',
-            'You deleted the product!',
-            'success'
-          )
-        } catch (error) {
-          console.log("delete product", error);
-        }
+    const alertDeleteProduct = window.confirm("are you sure mate?");
+    if (alertDeleteProduct) {
+      try {
+        await axios.delete(`http://localhost:8000/${id}`);
+        getAllProducts();
+        Swal.fire(
+          'Good job!',
+          'You deleted the product!',
+          'success'
+        )
+      } catch (error) {
+        console.log("delete product", error);
       }
-  }
+    }
+  };
 
   return (
     <Container fluid className="m-4 " style={{ width: '100%' }}>
