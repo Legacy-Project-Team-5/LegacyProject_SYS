@@ -10,18 +10,15 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-
+import Swal from 'sweetalert2';
 
 function Item({ getAllProducts, product }) {
   //states
   const [creatorIds, setCreatorIds] = useState([]);
   const [id, setId] = useState(1);
 
-
   let token = localStorage.getItem('token');
   const decoded = token ? jwt_decode(token) : null;
-
 
   useEffect(() => {
     if (decoded) {
@@ -32,24 +29,23 @@ function Item({ getAllProducts, product }) {
         setCreatorIds(updatedCreatorIds);
       }
       filtered();
-    } 
+
   }, [product]);
 
+  function editProduct(id) {
+    console.log('from the button' + id);
+    console.log(product);
+    setId(id);
+  }
 
-  function editProduct (id) {
-    console.log("from the button" + id)
-    console.log(product)
-    setId(id)
-  };
-
-  function handleEdit () {
-console.log ("hi")
+  function handleEdit() {
+    console.log('hi');
   }
 
   async function deleteProduct(id) {
     const alertDeleteProduct = await Swal.fire({
       title: 'Are you sure?',
-      text: "It will permanently deleted !",
+      text: 'It will permanently deleted !',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -69,11 +65,10 @@ console.log ("hi")
           console.log("delete product", error);
         }
       }
+    }
   }
-    
-  
-  return (
 
+  return (
     <Container fluid className="m-4 " style={{ width: '100%' }}>
       <Row md={2} lg={3} xl={4} style={{ width: '100%' }} className="g-2">
         {product.map((g, index) =>
@@ -121,7 +116,6 @@ console.log ("hi")
         )}
       </Row>
     </Container>
-
   );
 }
 
