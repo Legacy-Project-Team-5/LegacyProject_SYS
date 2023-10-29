@@ -21,8 +21,6 @@ function AddProduct({ getAllProducts }) {
     price: '',
     category: '',
   });
-  const [selected, setSelected] = useState("");
-
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -33,14 +31,6 @@ function AddProduct({ getAllProducts }) {
     console.log (product);
   };
 
-/*   const handleSelect = (e) => {
-  console.log (e.value)
-  setProduct({
-    ...product,
-  category: e.value,
-  });
-  console.log (product);
-  } */
 
   //Function to validate the form
   const validForm = () => {

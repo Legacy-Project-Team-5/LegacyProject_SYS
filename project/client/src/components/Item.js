@@ -41,7 +41,7 @@ function Item({ getAllProducts, product }) {
     console.log('hi');
   }
 
-  async function deleteProduct(id) {
+ /*  async function deleteProduct(id) {
     const alertDeleteProduct = window.confirm("are you sure mate?");
     if (alertDeleteProduct) {
       try {
@@ -56,6 +56,23 @@ function Item({ getAllProducts, product }) {
         console.log("delete product", error);
       }
     }
+  }; */
+  async function deleteProduct(id) {
+  Swal.fire({
+    title: 'Do you want to save the changes?',
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Save',
+    denyButtonText: `Don't save`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios.delete(`http://localhost:8000/${id}`)
+      .then (() => getAllProducts())
+      .then (() => Swal.fire('Saved!', '', 'success'))
+    } else if (result.isDenied) {
+      Swal.fire('Changes are not saved', '', 'info')
+    }
+  })
   };
 
   return (
