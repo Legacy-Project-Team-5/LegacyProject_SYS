@@ -7,9 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2';
 import Select from 'react-select';
 
-
 function AddProduct({ getAllProducts }) {
-
   let token = localStorage.getItem('token');
   const navigate = useNavigate();
 
@@ -26,11 +24,10 @@ function AddProduct({ getAllProducts }) {
     const value = e.target.value;
     setProduct({
       ...product,
-      [e.target.name]: value
+      [e.target.name]: value,
     });
-    console.log (product);
+    console.log(product);
   };
-
 
   //Function to validate the form
   const validForm = () => {
@@ -46,12 +43,11 @@ function AddProduct({ getAllProducts }) {
   function addNewProduct(e) {
     e.preventDefault();
     if (!validForm()) {
-
       Swal.fire({
-        icon:"error",
-        title:"ooppsss",
-        text:"Please fill in all fields."
-        });
+        icon: 'error',
+        title: 'ooppsss',
+        text: 'Please fill in all fields.',
+      });
 
       return;
     }
@@ -119,19 +115,19 @@ function AddProduct({ getAllProducts }) {
         />
 
         <Form.Label htmlFor="inputTitle" className="mt-2">
-        Category:
+          Category:
         </Form.Label>
-        <select
-        name ="category" 
-        value = {product.category}
-        onChange={handleInputChange}
+        <Form.Select
+          aria-label="Default select example"
+          name="category"
+          value={product.category}
+          onChange={handleInputChange}
         >
-       <option value="">Selected</option>
-       <option value="Games">Games</option>
-       <option value="Tech">Tech</option>
-       <option value="Other">Other</option>
-        </select>
-  
+          <option value="">Selected</option>
+          <option value="Games">Games</option>
+          <option value="Tech">Tech</option>
+          <option value="Other">Other</option>
+        </Form.Select>
 
         <div className="mt-4">
           <Button type="submit" className="addProductBtn">
